@@ -3,6 +3,7 @@ import { Target, Eye, Heart, Users, Award, Lightbulb } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { AnimatedCounter } from '@/components/AnimatedCounter';
 
 export const About: React.FC = () => {
   const { t } = useLanguage();
@@ -89,21 +90,45 @@ export const About: React.FC = () => {
             
             <div className="fade-in">
               <div className="grid grid-cols-2 gap-6">
-                <div className="card-elevated text-center bg-gradient-card hover:scale-105 transition-transform">
-                  <div className="text-3xl font-bold bg-gradient-accent bg-clip-text text-transparent mb-2">15+</div>
-                  <div className="text-sm text-muted-foreground">Années d'Expérience</div>
+                <div className="card-elevated text-center glass-card hover:scale-110 transition-all duration-500 group relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
+                  <AnimatedCounter 
+                    end={15} 
+                    suffix="+" 
+                    className="text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent mb-3 drop-shadow-lg animate-pulse-glow"
+                  />
+                  <div className="text-sm lg:text-base text-muted-foreground font-medium">Années d'Expérience</div>
                 </div>
-                <div className="card-elevated text-center bg-gradient-card hover:scale-105 transition-transform">
-                  <div className="text-3xl font-bold bg-gradient-accent bg-clip-text text-transparent mb-2">2000+</div>
-                  <div className="text-sm text-muted-foreground">Professionnels Formés</div>
+                <div className="card-elevated text-center glass-card hover:scale-110 transition-all duration-500 group relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
+                  <AnimatedCounter 
+                    end={2000} 
+                    suffix="+" 
+                    className="text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent mb-3 drop-shadow-lg animate-pulse-glow"
+                  />
+                  <div className="text-sm lg:text-base text-muted-foreground font-medium">Professionnels Formés</div>
                 </div>
-                <div className="card-elevated text-center bg-gradient-card hover:scale-105 transition-transform">
-                  <div className="text-3xl font-bold bg-gradient-accent bg-clip-text text-transparent mb-2">500+</div>
-                  <div className="text-sm text-muted-foreground">Entreprises Partenaires</div>
+                <div className="card-elevated text-center glass-card hover:scale-110 transition-all duration-500 group relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
+                  <AnimatedCounter 
+                    end={500} 
+                    suffix="+" 
+                    className="text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent mb-3 drop-shadow-lg animate-pulse-glow"
+                  />
+                  <div className="text-sm lg:text-base text-muted-foreground font-medium">Entreprises Partenaires</div>
                 </div>
-                <div className="card-elevated text-center bg-gradient-card hover:scale-105 transition-transform">
-                  <div className="text-3xl font-bold bg-gradient-accent bg-clip-text text-transparent mb-2">50+</div>
-                  <div className="text-sm text-muted-foreground">Formations Disponibles</div>
+                <div className="card-elevated text-center glass-card hover:scale-110 transition-all duration-500 group relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
+                  <AnimatedCounter 
+                    end={50} 
+                    suffix="+" 
+                    className="text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent mb-3 drop-shadow-lg animate-pulse-glow"
+                  />
+                  <div className="text-sm lg:text-base text-muted-foreground font-medium">Formations Disponibles</div>
                 </div>
               </div>
             </div>
