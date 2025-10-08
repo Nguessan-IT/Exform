@@ -47,7 +47,7 @@ export const Header: React.FC = () => {
               <img 
                 src={exformLogo} 
                 alt="EXFORM Logo" 
-                className="h-8 lg:h-10 w-auto transition-all duration-500 group-hover:scale-110 drop-shadow-lg animate-in fade-in-0 zoom-in-95 duration-700"
+                className="h-16 lg:h-20 w-auto transition-all duration-500 group-hover:scale-110 drop-shadow-lg animate-in fade-in-0 zoom-in-95 duration-700"
               />
               <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-30 rounded-lg transition-all duration-500 blur-sm group-hover:blur-none"></div>
             </div>
