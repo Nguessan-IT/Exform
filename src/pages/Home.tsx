@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, CheckCircle, Users, Award, Zap } from 'lucide-react';
+import { ArrowRight, CheckCircle, Users, Award, Zap, HelpCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ServiceCard } from '@/components/ServiceCard';
@@ -7,6 +7,12 @@ import { PartnerCarousel } from '@/components/PartnerCarousel';
 import { Chatbot } from '@/components/Chatbot';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { Button } from '@/components/ui/button';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import laboratoryHero from '@/assets/laboratory-hero.jpg';
 import trainingHero from '@/assets/training-hero.jpg';
 import constructionHero from '@/assets/construction-hero.jpg';
@@ -178,6 +184,51 @@ export const Home: React.FC = () => {
 
       {/* Partners Section */}
       <PartnerCarousel />
+
+      {/* FAQ Section */}
+      <section className="py-20 gradient-surface relative overflow-hidden">
+        <div className="absolute inset-0 bg-pattern-dots opacity-10"></div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12 fade-in">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-accent rounded-2xl mb-6 animate-pulse-glow">
+              <HelpCircle className="h-8 w-8 text-white" />
+            </div>
+            <h2 className="text-section text-foreground mb-4">
+              {t('home.faq.title')}
+            </h2>
+            <p className="text-body text-muted-foreground">
+              {t('home.faq.subtitle')}
+            </p>
+          </div>
+
+          <div className="fade-in card-elevated bg-white/80 backdrop-blur-sm" style={{animationDelay: '0.2s'}}>
+            <Accordion type="single" collapsible className="w-full">
+              {[1, 2, 3, 4, 5].map((num) => (
+                <AccordionItem key={num} value={`item-${num}`} className="border-b border-border/50 last:border-0">
+                  <AccordionTrigger className="text-left hover:text-accent transition-colors py-6 px-6 text-lg font-semibold">
+                    {t(`home.faq.q${num}`)}
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-6 text-muted-foreground leading-relaxed">
+                    {t(`home.faq.a${num}`)}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+
+          <div className="text-center mt-10 fade-in" style={{animationDelay: '0.4s'}}>
+            <p className="text-muted-foreground mb-4">
+              Vous avez d'autres questions ?
+            </p>
+            <Link to="/contact">
+              <Button className="btn-primary">
+                {t('nav.contact')}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-overlay text-white relative overflow-hidden">
