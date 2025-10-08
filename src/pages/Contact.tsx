@@ -65,7 +65,7 @@ export const Contact: React.FC = () => {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section with Background Image */}
-      <section className="relative py-20 hero-background-contact text-primary-foreground overflow-hidden">
+      <section className="relative py-20 text-primary-foreground overflow-hidden">
         <div className="absolute inset-0 bg-pattern-dots opacity-20"></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-display mb-6 bounce-in text-foreground">
