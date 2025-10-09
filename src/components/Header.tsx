@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageSelector } from './LanguageSelector';
 import { Button } from '@/components/ui/button';
-import exformLogo from '@/assets/exform-logo.jpg';
+import exformLogo from '@/assets/exform-logo-transparent.png';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,31 +39,48 @@ export const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         isScrolled
-          ? 'bg-primary/90 backdrop-blur-xl shadow-lg shadow-accent/10'
-          : 'bg-primary backdrop-blur-sm'
+          ? 'bg-primary/95 backdrop-blur-2xl shadow-2xl shadow-accent/20 border-b border-accent/20'
+          : 'bg-gradient-to-r from-primary via-primary-dark to-primary backdrop-blur-lg'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 lg:h-20">
-          {/* Logo & Company Name */}
-          <Link to="/" className="flex items-center space-x-3 group">
+      <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-accent/5 opacity-50"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="flex justify-between items-center h-20 lg:h-24">
+          {/* Logo & Company Name - Enhanced 3x */}
+          <Link to="/" className="flex items-center gap-4 lg:gap-6 group relative z-10">
             <div className="relative">
-              <img 
-                src={exformLogo} 
-                alt="EXFORM Logo" 
-                className="h-16 lg:h-20 w-auto transition-all duration-500 group-hover:scale-110 drop-shadow-lg animate-in fade-in-0 zoom-in-95 duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-30 rounded-lg transition-all duration-500 blur-sm group-hover:blur-none"></div>
+              {/* Animated Glow Background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/40 to-accent-light/40 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-75 group-hover:scale-110 animate-pulse-glow"></div>
+              
+              {/* Logo Container with 3D Effect */}
+              <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-2 lg:p-3 border border-white/20 shadow-2xl group-hover:shadow-accent/50 transition-all duration-700 group-hover:scale-110 group-hover:rotate-3">
+                <img 
+                  src={exformLogo} 
+                  alt="EXFORM Logo" 
+                  className="h-14 lg:h-20 w-auto transition-all duration-700 group-hover:drop-shadow-2xl filter brightness-110 group-hover:brightness-125"
+                />
+              </div>
+              
+              {/* Rotating Border Effect */}
+              <div className="absolute inset-0 rounded-2xl border-2 border-accent/0 group-hover:border-accent/50 transition-all duration-700 group-hover:rotate-6"></div>
             </div>
-            <div className="hidden sm:block animate-in slide-in-from-left-2 duration-1000">
-              <h1 className="text-lg lg:text-xl font-bold text-primary-foreground group-hover:text-accent transition-all duration-500 tracking-wide">
+            
+            <div className="hidden sm:flex flex-col gap-1 animate-in slide-in-from-left-3 duration-1000">
+              {/* Company Name with Gradient */}
+              <h1 className="text-2xl lg:text-4xl font-black bg-gradient-to-r from-primary-foreground via-accent-light to-primary-foreground bg-clip-text text-transparent group-hover:from-accent group-hover:via-accent-light group-hover:to-accent transition-all duration-700 tracking-tight drop-shadow-lg">
                 EXFORM
               </h1>
-              <p className="text-xs lg:text-sm text-primary-foreground/70 group-hover:text-accent/80 transition-all duration-500">
-                Expertise & Formation
-              </p>
+              
+              {/* Tagline with Animation */}
+              <div className="flex items-center gap-2">
+                <div className="h-0.5 w-8 bg-gradient-to-r from-accent to-transparent rounded-full group-hover:w-12 transition-all duration-500"></div>
+                <p className="text-sm lg:text-base font-semibold text-primary-foreground/90 group-hover:text-accent-light transition-all duration-500 tracking-wide">
+                  Expertise & Formation
+                </p>
+              </div>
             </div>
           </Link>
 
