@@ -255,7 +255,7 @@ export const Home: React.FC = () => {
               </Button>
             </Link>
             <Link to="/training">
-              <Button className="btn-hero bg-white/10 border-2 border-white text-white hover:bg-white hover:text-[#E31937] transform hover:scale-105 transition-all duration-300 shadow-2xl backdrop-blur-md">
+              <Button className="btn-hero bg-cyan-400 text-white hover:bg-cyan-300 transform hover:scale-105 transition-all duration-300 shadow-2xl">
                 {t('nav.training')}
               </Button>
             </Link>
