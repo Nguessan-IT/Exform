@@ -231,29 +231,31 @@ export const Home: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-overlay text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-pattern-dots opacity-30"></div>
+      <section className="py-20 relative overflow-hidden" style={{background: 'linear-gradient(135deg, #E31937 0%, #C71530 50%, #A01228 100%)'}}>
+        <div className="absolute inset-0 bg-pattern-dots opacity-20"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in relative z-10">
           <div className="mb-8">
-            <div className="inline-block p-4 bg-white/10 rounded-2xl backdrop-blur-sm mb-6">
-              <ArrowRight className="h-8 w-8 text-accent animate-pulse" />
+            <div className="inline-block p-4 bg-white/10 rounded-2xl backdrop-blur-sm mb-6 animate-pulse-glow">
+              <ArrowRight className="h-8 w-8 text-white animate-pulse" />
             </div>
-            <h2 className="text-section mb-6">
+            <h2 className="text-section mb-6 text-white">
               {t('home.cta.title')}
             </h2>
-            <p className="text-xl mb-8 text-white/90">
+            <p className="text-xl mb-8 text-white/95">
               {t('home.cta.subtitle')}
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button className="btn-hero bg-accent text-white hover:bg-accent-light transform hover:scale-105 transition-all duration-300">
+              <Button className="btn-hero bg-white text-[#E31937] hover:bg-white/90 transform hover:scale-105 transition-all duration-300 shadow-2xl">
                 {t('nav.contact')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link to="/training">
-              <Button variant="outline" className="glass border-white/30 text-white hover:bg-white/20 backdrop-blur-sm">
+              <Button variant="outline" className="glass border-white/50 text-white hover:bg-white/20 backdrop-blur-sm">
                 {t('nav.training')}
               </Button>
             </Link>
