@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageSelector } from './LanguageSelector';
 import { Button } from '@/components/ui/button';
-import exformLogo from '@/assets/exform-logo-transparent.png';
+import exformLogo from '@/assets/exform-logo.jpg';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
