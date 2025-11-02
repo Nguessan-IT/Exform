@@ -242,7 +242,7 @@ export const Services: React.FC = () => {
               </Button>
             </Link>
             <Link to="/laboratory">
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+              <Button className="btn-hero bg-cyan-500 text-white hover:bg-cyan-400 transform hover:scale-105 transition-all duration-300 shadow-2xl">
                 {t('nav.laboratory')}
               </Button>
             </Link>
