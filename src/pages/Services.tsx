@@ -4,9 +4,19 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { ServiceCard } from '@/components/ServiceCard';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import laboratoryHero from '@/assets/laboratory-hero.jpg';
 import trainingHero from '@/assets/training-hero.jpg';
 import constructionHero from '@/assets/construction-hero.jpg';
+import burnerMaintenance1 from '@/assets/burner-maintenance-1.jpg';
+import burnerMaintenance2 from '@/assets/burner-maintenance-2.jpg';
+import burnerMaintenance3 from '@/assets/burner-maintenance-3.jpg';
 
 export const Services: React.FC = () => {
   const { t } = useLanguage();
@@ -155,6 +165,95 @@ export const Services: React.FC = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Burner Maintenance Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 fade-in">
+            <h2 className="text-section text-foreground mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Maintenance des Brûleurs Industriels
+            </h2>
+            <p className="text-body text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Installation, contrôle annuel, maintenance des brûleurs gaz ou fuel des marques WEISHAUPT et SAAKE installés sur des chaudières ou des torréfacteurs
+            </p>
+          </div>
+
+          <div className="max-w-5xl mx-auto">
+            <Carousel className="w-full fade-in" style={{animationDelay: '0.2s'}}>
+              <CarouselContent>
+                <CarouselItem>
+                  <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                    <img
+                      src={burnerMaintenance1}
+                      alt="Installation et maintenance de brûleurs WEISHAUPT"
+                      className="w-full h-[500px] object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  </div>
+                </CarouselItem>
+                <CarouselItem>
+                  <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                    <img
+                      src={burnerMaintenance2}
+                      alt="Contrôle annuel des brûleurs SAAKE"
+                      className="w-full h-[500px] object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  </div>
+                </CarouselItem>
+                <CarouselItem>
+                  <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                    <img
+                      src={burnerMaintenance3}
+                      alt="Maintenance des brûleurs industriels"
+                      className="w-full h-[500px] object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  </div>
+                </CarouselItem>
+              </CarouselContent>
+              <CarouselPrevious className="left-4" />
+              <CarouselNext className="right-4" />
+            </Carousel>
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="card-elevated text-center hover:scale-105 transition-transform fade-in" style={{animationDelay: '0.3s'}}>
+              <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="h-6 w-6 text-accent" />
+              </div>
+              <h3 className="text-card-title text-card-foreground mb-2 font-bold">
+                Installation
+              </h3>
+              <p className="text-body text-muted-foreground">
+                Installation professionnelle de brûleurs industriels
+              </p>
+            </div>
+            <div className="card-elevated text-center hover:scale-105 transition-transform fade-in" style={{animationDelay: '0.4s'}}>
+              <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="h-6 w-6 text-accent" />
+              </div>
+              <h3 className="text-card-title text-card-foreground mb-2 font-bold">
+                Contrôle Annuel
+              </h3>
+              <p className="text-body text-muted-foreground">
+                Contrôles périodiques et certifications
+              </p>
+            </div>
+            <div className="card-elevated text-center hover:scale-105 transition-transform fade-in" style={{animationDelay: '0.5s'}}>
+              <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="h-6 w-6 text-accent" />
+              </div>
+              <h3 className="text-card-title text-card-foreground mb-2 font-bold">
+                Maintenance
+              </h3>
+              <p className="text-body text-muted-foreground">
+                Maintenance préventive et corrective
+              </p>
+            </div>
           </div>
         </div>
       </section>
