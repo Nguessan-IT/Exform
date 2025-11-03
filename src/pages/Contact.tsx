@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
+import MapboxMap from '@/components/MapboxMap';
 
 export const Contact: React.FC = () => {
   const { t } = useLanguage();
@@ -218,18 +219,11 @@ export const Contact: React.FC = () => {
 
           <div className="card-elevated hover:scale-105 transition-all duration-500 slide-up">
             <div className="aspect-video w-full rounded-xl overflow-hidden bg-muted">
-              {/* Placeholder for Google Maps */}
-              <div className="w-full h-full flex items-center justify-center gradient-hero">
-                <div className="text-center text-white">
-                  <MapPin className="h-16 w-16 text-white mx-auto mb-4 animate-float" />
-                  <h3 className="text-card-title mb-2">
-                    {t('contact.map.placeholder')}
-                  </h3>
-                  <p className="text-body text-white/80">
-                    {t('contact.map.coming')}
-                  </p>
-                </div>
-              </div>
+              <MapboxMap 
+                latitude={5.357130} 
+                longitude={-4.088477} 
+                zoom={15}
+              />
             </div>
           </div>
         </div>
