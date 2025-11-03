@@ -77,7 +77,7 @@ export const About: React.FC = () => {
                   du secteur.
                 </p>
                 <p>
-                  Depuis nos débuts, nous avons formé plus de 2000 professionnels et accompagné des centaines 
+                  Depuis nos débuts, nous avons formé plus de 500 professionnels et accompagné des centaines 
                   d'entreprises dans leur développement. Notre laboratoire d'analyse physico-chimique est 
                   reconnu pour sa précision et sa conformité aux normes internationales.
                 </p>

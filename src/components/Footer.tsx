@@ -136,7 +136,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center">
           <p className="text-sm text-primary-foreground/60">
-            © 2024 EXFORM. Tous droits réservés. | All rights reserved.
+            © {new Date().getFullYear()} EXFORM. Tous droits réservés. | All rights reserved.
           </p>
         </div>
       </div>
