@@ -231,7 +231,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 relative overflow-hidden" style={{background: 'linear-gradient(135deg, #E31937 0%, #C71530 50%, #A01228 100%)'}}>
+      <section className="py-20 relative overflow-hidden" style={{background: 'linear-gradient(135deg, #0EA5E9 0%, #0284C7 50%, #0369A1 100%)'}}>
         <div className="absolute inset-0 bg-pattern-dots opacity-20"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
@@ -249,7 +249,7 @@ export const Home: React.FC = () => {
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button className="btn-hero bg-white text-[#E31937] hover:bg-white/90 transform hover:scale-105 transition-all duration-300 shadow-2xl">
+              <Button className="btn-hero bg-white text-primary hover:bg-white/90 transform hover:scale-105 transition-all duration-300 shadow-2xl">
                 {t('nav.contact')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
