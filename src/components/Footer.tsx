@@ -106,20 +106,28 @@ export const Footer: React.FC = () => {
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-accent flex-shrink-0" />
                 <a 
-                  href="mailto:info@exform.ci" 
+                  href="mailto:info4@gmail.com" 
                   className="text-sm text-primary-foreground/80 hover:text-accent transition-colors"
                 >
-                  info@exform.ci
+                  info4@gmail.com
                 </a>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-accent flex-shrink-0" />
-                <a 
-                  href="tel:+2250707000000" 
-                  className="text-sm text-primary-foreground/80 hover:text-accent transition-colors"
-                >
-                  +225 07 07 00 00 00
-                </a>
+                <div className="flex flex-col">
+                  <a 
+                    href="tel:+2250714613489" 
+                    className="text-sm text-primary-foreground/80 hover:text-accent transition-colors"
+                  >
+                    +225 07 14 61 34 89
+                  </a>
+                  <a 
+                    href="tel:+2252733747217" 
+                    className="text-sm text-primary-foreground/80 hover:text-accent transition-colors"
+                  >
+                    +225 27 33 74 72 17
+                  </a>
+                </div>
               </div>
             </div>
           </div>

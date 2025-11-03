@@ -48,12 +48,12 @@ export const Contact: React.FC = () => {
     {
       icon: Mail,
       title: t('contact.info.email'),
-      details: ['info@exform.ci', 'contact@exform.ci'],
+      details: ['info4@gmail.com'],
     },
     {
       icon: Phone,
       title: t('contact.info.phone'),
-      details: ['+225 07 07 00 00 00', '+225 05 05 00 00 00'],
+      details: ['+225 07 14 61 34 89', '+225 27 33 74 72 17'],
     },
     {
       icon: Clock,

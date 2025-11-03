@@ -6,7 +6,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 export const WhatsAppButton: React.FC = () => {
   const { language } = useLanguage();
   
-  const phoneNumber = "2250000000000"; // Remplacez par le vrai numéro
+  const phoneNumber = "2250714613489"; // Numéro WhatsApp EXFORM
   
   const message = language === 'fr' 
     ? "Bonjour, je vous contacte depuis votre site web EXFORM. J'aimerais avoir des informations sur vos services."
