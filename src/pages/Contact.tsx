@@ -217,8 +217,8 @@ export const Contact: React.FC = () => {
             </p>
           </div>
 
-          <div className="card-elevated hover:scale-105 transition-all duration-500 slide-up">
-            <div className="aspect-video w-full rounded-xl overflow-hidden bg-muted">
+          <div className="card-elevated hover:scale-105 transition-all duration-500 slide-up max-w-4xl mx-auto">
+            <div className="w-full h-[400px] rounded-xl overflow-hidden bg-muted">
               <MapboxMap 
                 latitude={5.357130} 
                 longitude={-4.088477} 
