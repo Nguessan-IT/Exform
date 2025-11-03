@@ -29,11 +29,11 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="bg-white rounded-lg p-3 w-fit">
+            <div className="bg-white rounded-lg p-2 w-fit shadow-sm">
               <img 
                 src={exformLogo} 
                 alt="EXFORM Logo" 
-                className="h-12 w-auto object-contain"
+                className="h-14 w-auto object-contain"
               />
             </div>
             <p className="text-sm text-primary-foreground/80 leading-relaxed">
@@ -101,9 +101,20 @@ export const Footer: React.FC = () => {
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-primary-foreground/80">
+                <Link 
+                  to="/contact#map" 
+                  className="text-sm text-primary-foreground/80 hover:text-accent transition-colors hover:underline cursor-pointer"
+                  onClick={() => {
+                    setTimeout(() => {
+                      const mapSection = document.getElementById('map-section');
+                      if (mapSection) {
+                        mapSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      }
+                    }, 100);
+                  }}
+                >
                   {t('contact.address')}
-                </span>
+                </Link>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-accent flex-shrink-0" />
