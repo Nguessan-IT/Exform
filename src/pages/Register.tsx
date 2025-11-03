@@ -7,6 +7,44 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { Link, useNavigate } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
+import { z } from 'zod';
+
+// Schéma de validation Zod pour la sécurité
+const registrationSchema = z.object({
+  first_name: z.string()
+    .trim()
+    .min(2, "Le prénom doit contenir au moins 2 caractères")
+    .max(100, "Le prénom ne peut pas dépasser 100 caractères"),
+  last_name: z.string()
+    .trim()
+    .min(2, "Le nom doit contenir au moins 2 caractères")
+    .max(100, "Le nom ne peut pas dépasser 100 caractères"),
+  email: z.string()
+    .trim()
+    .email("Adresse email invalide")
+    .max(255, "L'email ne peut pas dépasser 255 caractères"),
+  phone: z.string()
+    .trim()
+    .regex(/^\+?[0-9\s-]{8,20}$/, "Numéro de téléphone invalide")
+    .max(20, "Le numéro de téléphone est trop long"),
+  company: z.string()
+    .trim()
+    .min(2, "Le nom de l'entreprise doit contenir au moins 2 caractères")
+    .max(200, "Le nom de l'entreprise ne peut pas dépasser 200 caractères"),
+  position: z.string()
+    .trim()
+    .min(2, "Le poste doit contenir au moins 2 caractères")
+    .max(100, "Le poste ne peut pas dépasser 100 caractères"),
+  experience_level: z.string().optional(),
+  preferred_training: z.string()
+    .min(1, "Veuillez sélectionner une formation"),
+  start_date: z.string()
+    .min(1, "Veuillez sélectionner une date de début"),
+  motivation: z.string()
+    .max(2000, "La motivation ne peut pas dépasser 2000 caractères")
+    .optional()
+});
 
 export const Register: React.FC = () => {
   const { t } = useLanguage();
@@ -16,19 +54,19 @@ export const Register: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     // Step 1: Personal Info
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
     email: '',
     phone: '',
     
     // Step 2: Professional Info
     company: '',
     position: '',
-    experience: '',
+    experience_level: '',
     
     // Step 3: Training Selection
-    training: '',
-    startDate: '',
+    preferred_training: '',
+    start_date: '',
     motivation: '',
   });
 
@@ -45,14 +83,64 @@ export const Register: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Validation avec Zod pour la sécurité
+      const validatedData = registrationSchema.parse(formData);
+      
+      // Insertion sécurisée dans Supabase
+      const { error } = await supabase
+        .from('training_registrations_exform')
+        .insert([{
+          first_name: validatedData.first_name,
+          last_name: validatedData.last_name,
+          email: validatedData.email,
+          phone: validatedData.phone,
+          company: validatedData.company,
+          position: validatedData.position,
+          experience_level: validatedData.experience_level || null,
+          preferred_training: validatedData.preferred_training,
+          start_date: validatedData.start_date,
+          motivation: validatedData.motivation || null,
+          status: 'new'
+        }]);
+      
+      if (error) {
+        console.error('Erreur lors de l\'enregistrement:', error);
+        toast({
+          title: "Erreur",
+          description: "Une erreur est survenue lors de l'inscription. Veuillez réessayer.",
+          variant: "destructive"
+        });
+        return;
+      }
+      
+      // Succès
       toast({
         title: "Inscription réussie !",
         description: "Nous vous contacterons sous 48h pour confirmer votre inscription.",
       });
+      
       navigate('/thanks');
-    }, 2000);
+      
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        // Erreur de validation
+        const firstError = error.errors[0];
+        toast({
+          title: "Validation échouée",
+          description: firstError.message,
+          variant: "destructive"
+        });
+      } else {
+        toast({
+          title: "Erreur",
+          description: "Une erreur inattendue est survenue.",
+          variant: "destructive"
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (name: string, value: string) => {
@@ -77,11 +165,11 @@ export const Register: React.FC = () => {
   const isStepValid = () => {
     switch (currentStep) {
       case 1:
-        return formData.firstName && formData.lastName && formData.email && formData.phone;
+        return formData.first_name && formData.last_name && formData.email && formData.phone;
       case 2:
         return formData.company && formData.position;
       case 3:
-        return formData.training && formData.startDate;
+        return formData.preferred_training && formData.start_date;
       default:
         return false;
     }
@@ -159,10 +247,11 @@ export const Register: React.FC = () => {
                       Prénom *
                     </label>
                     <Input
-                      value={formData.firstName}
-                      onChange={(e) => handleChange('firstName', e.target.value)}
+                      value={formData.first_name}
+                      onChange={(e) => handleChange('first_name', e.target.value)}
                       placeholder="Votre prénom"
                       required
+                      maxLength={100}
                     />
                   </div>
                   <div>
@@ -170,10 +259,11 @@ export const Register: React.FC = () => {
                       Nom *
                     </label>
                     <Input
-                      value={formData.lastName}
-                      onChange={(e) => handleChange('lastName', e.target.value)}
+                      value={formData.last_name}
+                      onChange={(e) => handleChange('last_name', e.target.value)}
                       placeholder="Votre nom"
                       required
+                      maxLength={100}
                     />
                   </div>
                 </div>
@@ -188,6 +278,7 @@ export const Register: React.FC = () => {
                     onChange={(e) => handleChange('email', e.target.value)}
                     placeholder="votre.email@exemple.com"
                     required
+                    maxLength={255}
                   />
                 </div>
 
@@ -201,6 +292,7 @@ export const Register: React.FC = () => {
                     onChange={(e) => handleChange('phone', e.target.value)}
                     placeholder="+225 07 00 00 00 00"
                     required
+                    maxLength={20}
                   />
                 </div>
               </div>
@@ -225,6 +317,7 @@ export const Register: React.FC = () => {
                     onChange={(e) => handleChange('company', e.target.value)}
                     placeholder="Nom de votre entreprise"
                     required
+                    maxLength={200}
                   />
                 </div>
 
@@ -237,6 +330,7 @@ export const Register: React.FC = () => {
                     onChange={(e) => handleChange('position', e.target.value)}
                     placeholder="Votre poste actuel"
                     required
+                    maxLength={100}
                   />
                 </div>
 
@@ -244,7 +338,7 @@ export const Register: React.FC = () => {
                   <label className="block text-sm font-medium text-foreground mb-2">
                     Années d'expérience
                   </label>
-                  <Select onValueChange={(value) => handleChange('experience', value)}>
+                  <Select onValueChange={(value) => handleChange('experience_level', value)}>
                     <SelectTrigger>
                       <SelectValue placeholder="Sélectionnez votre niveau d'expérience" />
                     </SelectTrigger>
@@ -273,7 +367,7 @@ export const Register: React.FC = () => {
                   <label className="block text-sm font-medium text-foreground mb-2">
                     Formation souhaitée *
                   </label>
-                  <Select onValueChange={(value) => handleChange('training', value)}>
+                  <Select onValueChange={(value) => handleChange('preferred_training', value)}>
                     <SelectTrigger>
                       <SelectValue placeholder="Choisissez votre formation" />
                     </SelectTrigger>
@@ -293,8 +387,8 @@ export const Register: React.FC = () => {
                   </label>
                   <Input
                     type="date"
-                    value={formData.startDate}
-                    onChange={(e) => handleChange('startDate', e.target.value)}
+                    value={formData.start_date}
+                    onChange={(e) => handleChange('start_date', e.target.value)}
                     required
                   />
                 </div>
@@ -308,6 +402,7 @@ export const Register: React.FC = () => {
                     onChange={(e) => handleChange('motivation', e.target.value)}
                     placeholder="Décrivez vos objectifs et motivations pour cette formation..."
                     rows={4}
+                    maxLength={2000}
                   />
                 </div>
               </div>

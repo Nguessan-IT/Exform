@@ -7,13 +7,36 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
 import MapboxMap from '@/components/MapboxMap';
+import { supabase } from '@/integrations/supabase/client';
+import { z } from 'zod';
+
+// Schéma de validation Zod pour la sécurité
+const contactSchema = z.object({
+  first_name: z.string()
+    .trim()
+    .min(2, "Le prénom doit contenir au moins 2 caractères")
+    .max(100, "Le prénom ne peut pas dépasser 100 caractères"),
+  last_name: z.string()
+    .trim()
+    .min(2, "Le nom doit contenir au moins 2 caractères")
+    .max(100, "Le nom ne peut pas dépasser 100 caractères"),
+  email: z.string()
+    .trim()
+    .email("Adresse email invalide")
+    .max(255, "L'email ne peut pas dépasser 255 caractères"),
+  message: z.string()
+    .trim()
+    .min(10, "Le message doit contenir au moins 10 caractères")
+    .max(1000, "Le message ne peut pas dépasser 1000 caractères")
+});
 
 export const Contact: React.FC = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
+    first_name: '',
+    last_name: '',
     email: '',
     message: '',
   });
@@ -22,15 +45,59 @@ export const Contact: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Validation avec Zod pour la sécurité
+      const validatedData = contactSchema.parse(formData);
+      
+      // Insertion sécurisée dans Supabase
+      const { error } = await supabase
+        .from('contacts_exform')
+        .insert([{
+          first_name: validatedData.first_name,
+          last_name: validatedData.last_name,
+          email: validatedData.email,
+          message: validatedData.message,
+          status: 'new'
+        }]);
+      
+      if (error) {
+        console.error('Erreur lors de l\'enregistrement:', error);
+        toast({
+          title: "Erreur",
+          description: "Une erreur est survenue. Veuillez réessayer.",
+          variant: "destructive"
+        });
+        return;
+      }
+      
+      // Succès
       toast({
         title: t('contact.toast.success'),
         description: t('contact.toast.description'),
       });
-      setFormData({ name: '', email: '', message: '' });
+      
+      // Réinitialiser le formulaire
+      setFormData({ first_name: '', last_name: '', email: '', message: '' });
+      
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        // Erreur de validation
+        const firstError = error.errors[0];
+        toast({
+          title: "Validation échouée",
+          description: firstError.message,
+          variant: "destructive"
+        });
+      } else {
+        toast({
+          title: "Erreur",
+          description: "Une erreur inattendue est survenue.",
+          variant: "destructive"
+        });
+      }
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -91,18 +158,36 @@ export const Contact: React.FC = () => {
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="form-float">
-                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                      {t('contact.form.name')}
+                    <label htmlFor="first_name" className="block text-sm font-medium text-foreground mb-2">
+                      Prénom *
                     </label>
                     <Input
-                      id="name"
-                      name="name"
+                      id="first_name"
+                      name="first_name"
                       type="text"
                       required
-                      value={formData.name}
+                      value={formData.first_name}
                       onChange={handleChange}
                       className="w-full input-glow transition-all duration-300"
-                      placeholder={t('contact.form.name.placeholder')}
+                      placeholder="Votre prénom"
+                      maxLength={100}
+                    />
+                  </div>
+
+                  <div className="form-float">
+                    <label htmlFor="last_name" className="block text-sm font-medium text-foreground mb-2">
+                      Nom *
+                    </label>
+                    <Input
+                      id="last_name"
+                      name="last_name"
+                      type="text"
+                      required
+                      value={formData.last_name}
+                      onChange={handleChange}
+                      className="w-full input-glow transition-all duration-300"
+                      placeholder="Votre nom"
+                      maxLength={100}
                     />
                   </div>
 
@@ -119,6 +204,7 @@ export const Contact: React.FC = () => {
                       onChange={handleChange}
                       className="w-full input-glow transition-all duration-300"
                       placeholder={t('contact.form.email.placeholder')}
+                      maxLength={255}
                     />
                   </div>
 
@@ -135,6 +221,7 @@ export const Contact: React.FC = () => {
                       rows={5}
                       className="w-full input-glow transition-all duration-300"
                       placeholder={t('contact.form.message.placeholder')}
+                      maxLength={1000}
                     />
                   </div>
 
