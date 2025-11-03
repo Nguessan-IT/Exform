@@ -94,7 +94,7 @@ export const About: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                   <AnimatedCounter 
-                    end={15} 
+                    end={10} 
                     suffix="+" 
                     className="text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent mb-3 drop-shadow-lg animate-pulse-glow"
                   />
@@ -104,7 +104,7 @@ export const About: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                   <AnimatedCounter 
-                    end={2000} 
+                    end={500} 
                     suffix="+" 
                     className="text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent mb-3 drop-shadow-lg animate-pulse-glow"
                   />
@@ -114,7 +114,7 @@ export const About: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                   <AnimatedCounter 
-                    end={500} 
+                    end={10} 
                     suffix="+" 
                     className="text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent mb-3 drop-shadow-lg animate-pulse-glow"
                   />
@@ -124,7 +124,7 @@ export const About: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                   <AnimatedCounter 
-                    end={50} 
+                    end={10} 
                     suffix="+" 
                     className="text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent mb-3 drop-shadow-lg animate-pulse-glow"
                   />
