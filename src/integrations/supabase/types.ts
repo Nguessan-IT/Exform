@@ -142,6 +142,39 @@ export type Database = {
         }
         Relationships: []
       }
+      contacts_exform: {
+        Row: {
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          last_name: string
+          message: string
+          status: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          first_name: string
+          id?: string
+          last_name: string
+          message: string
+          status?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          message?: string
+          status?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       contacts_melliamcosmetics_fact_digit2: {
         Row: {
           created_at: string
@@ -1539,6 +1572,48 @@ export type Database = {
           name?: string
           rating?: number | null
           title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      training_registrations_exform: {
+        Row: {
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          last_name: string
+          phone: string
+          profession: string
+          referral_source: string
+          status: string | null
+          training_name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          first_name: string
+          id?: string
+          last_name: string
+          phone: string
+          profession: string
+          referral_source: string
+          status?: string | null
+          training_name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          phone?: string
+          profession?: string
+          referral_source?: string
+          status?: string | null
+          training_name?: string
           updated_at?: string
         }
         Relationships: []
