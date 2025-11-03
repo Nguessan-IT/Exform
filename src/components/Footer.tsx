@@ -2,7 +2,7 @@ import React from 'react';
 import { MapPin, Mail, Phone, Facebook, Twitter, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
-import exformLogo from '@/assets/exform-logo.png';
+import exformLogo from '@/assets/exform-logo-transparent.png';
 
 export const Footer: React.FC = () => {
   const { t } = useLanguage();
@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
             <img 
               src={exformLogo} 
               alt="EXFORM Logo" 
-              className="h-10 w-auto filter brightness-0 invert"
+              className="h-16 w-auto object-contain"
             />
             <p className="text-sm text-primary-foreground/80 leading-relaxed">
               {t('hero.title')}
