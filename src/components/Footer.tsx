@@ -2,7 +2,7 @@ import React from 'react';
 import { MapPin, Mail, Phone, Facebook, Twitter, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
-import exformLogo from '@/assets/exform-footer-logo.png';
+import exformLogo from '@/assets/exform-logo-full.jpeg';
 
 export const Footer: React.FC = () => {
   const { t } = useLanguage();
@@ -29,13 +29,11 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="bg-white rounded-lg p-2 w-fit shadow-sm">
-              <img 
-                src={exformLogo} 
-                alt="EXFORM Logo" 
-                className="h-14 w-auto object-contain"
-              />
-            </div>
+            <img 
+              src={exformLogo} 
+              alt="EXFORM Logo" 
+              className="h-20 w-auto object-contain rounded-lg"
+            />
             <p className="text-sm text-primary-foreground/80 leading-relaxed">
               {t('hero.title')}
             </p>
