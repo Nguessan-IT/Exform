@@ -1578,40 +1578,58 @@ export type Database = {
       }
       training_registrations_exform: {
         Row: {
+          company: string | null
           created_at: string
           email: string
+          experience_level: string | null
           first_name: string
           id: string
           last_name: string
+          motivation: string | null
           phone: string
+          position: string | null
+          preferred_training: string | null
           profession: string
           referral_source: string
+          start_date: string | null
           status: string | null
           training_name: string
           updated_at: string
         }
         Insert: {
+          company?: string | null
           created_at?: string
           email: string
+          experience_level?: string | null
           first_name: string
           id?: string
           last_name: string
+          motivation?: string | null
           phone: string
+          position?: string | null
+          preferred_training?: string | null
           profession: string
           referral_source: string
+          start_date?: string | null
           status?: string | null
           training_name: string
           updated_at?: string
         }
         Update: {
+          company?: string | null
           created_at?: string
           email?: string
+          experience_level?: string | null
           first_name?: string
           id?: string
           last_name?: string
+          motivation?: string | null
           phone?: string
+          position?: string | null
+          preferred_training?: string | null
           profession?: string
           referral_source?: string
+          start_date?: string | null
           status?: string | null
           training_name?: string
           updated_at?: string

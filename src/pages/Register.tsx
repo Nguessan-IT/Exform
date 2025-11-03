@@ -97,10 +97,13 @@ export const Register: React.FC = () => {
           phone: validatedData.phone,
           company: validatedData.company,
           position: validatedData.position,
-          experience_level: validatedData.experience_level || null,
+          profession: validatedData.position, // Maintenir la compatibilité avec l'ancien champ
+          experience_level: validatedData.experience_level || '',
+          referral_source: validatedData.experience_level || '', // Maintenir la compatibilité
           preferred_training: validatedData.preferred_training,
+          training_name: validatedData.preferred_training, // Maintenir la compatibilité
           start_date: validatedData.start_date,
-          motivation: validatedData.motivation || null,
+          motivation: validatedData.motivation || '',
           status: 'new'
         }]);
       
